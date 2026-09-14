@@ -1,0 +1,8 @@
+.faq-list {
+    list-style: none;
+    padding: 0;
+}
+
+.faq-answer {
+    display: none;
+}
