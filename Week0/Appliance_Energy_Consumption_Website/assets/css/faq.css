@@ -6,3 +6,7 @@
 .faq-answer {
     display: none;
 }
+
+.faq-answer.show {
+    display: block;
+}
