@@ -1,0 +1,13 @@
+
+.img
+{
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
