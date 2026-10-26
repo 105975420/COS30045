@@ -10,7 +10,7 @@
     height: auto;
 }
 
-.annotated_img {
+.annotated_and_dom_img {
     display: block;
     width: 900px;
     max-width: 100%;
