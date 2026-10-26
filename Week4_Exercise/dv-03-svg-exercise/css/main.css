@@ -1,0 +1,19 @@
+.svg-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+.svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.annotated_img {
+    display: block;
+    width: 900px;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+}
