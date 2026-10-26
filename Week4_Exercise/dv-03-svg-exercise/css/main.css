@@ -17,3 +17,9 @@
     height: auto;
     margin: 20px auto;
 }
+
+.window {
+    fill: skyblue;
+    stroke: saddlebrown;
+    stroke-width: 2;
+}
