@@ -28,4 +28,6 @@ svg.append("rect")
 
     data.sort((a, b) => b.count - a.count);
     console.log("Sorted data:", data);
+
+    drawBarChart(data);
 });
