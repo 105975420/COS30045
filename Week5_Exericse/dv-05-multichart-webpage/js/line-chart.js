@@ -1,6 +1,6 @@
 const drawLineChart = data => {
     
-    const margin = { top: 40, right: 170, bottom: 25, left: 40 };
+    const margin = { top: 40, right: 170, bottom: 60, left: 40 };
     const width = 1000;
     const height = 500;
 
@@ -39,6 +39,21 @@ const drawLineChart = data => {
     // Add left y-axis
     innerChart.append("g")
         .call(leftAxis);
+    
+    // Y-axis label
+    innerChart.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -innerHeight / 2)
+        .attr("y", -margin.left + 15)
+        .attr("text-anchor", "middle")
+        .text("Average Price ($ per MWh)");
+
+    // X-axis label
+    innerChart.append("text")
+        .attr("x", innerWidth / 2)
+        .attr("y", innerHeight + 40)
+        .attr("text-anchor", "middle")
+        .text("Year");
     
     // Draw line
     const line = d3.line()
