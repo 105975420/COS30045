@@ -47,7 +47,7 @@ const drawBarChart = data => {
         .attr("y", -25)
         .attr("text-anchor", "start");
 
-    // Draw bars
+    
     innerChart.selectAll(".bar")
         .data(data)
         .join("rect")
@@ -57,7 +57,7 @@ const drawBarChart = data => {
         .attr("width", xScale.bandwidth())
         .attr("height", d => innerHeight - yScale(d.Energy_Consumption));
 
-    // Add value labels
+    
     innerChart.selectAll(".bar-label")
         .data(data)
         .join("text")
