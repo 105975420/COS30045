@@ -39,3 +39,62 @@ const populateFilters = (data) => {
     };
 
 };
+
+const createTooltip = (data) => {
+
+    // Append tooltip to innerChart
+    const tooltip = innerChartS
+        .append("g")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    // Append tooltip background rectangle
+    tooltip.append("rect")
+        .attr("width", tooltipWidth)
+        .attr("height", tooltipHeight)
+        .attr("rx", 3)
+        .attr("ry", 3)
+        .attr("fill", barColor)
+        .attr("fill-opacity", 0.75);
+
+    // Append tooltip text
+    tooltip.append("text")
+        .text("NA")
+        .attr("x", tooltipWidth / 2)
+        .attr("y", tooltipHeight / 2 + 2)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "middle")
+        .attr("fill", "white")
+        .style("font-weight", 900);
+};
+
+const handleMouseEvents = () => {
+
+    innerChartS.selectAll("circle.data-point")
+        .on("mouseenter", (e, d) => {
+            console.log("Mouse entered circle", d);
+
+            d3.select(".tooltip text")
+                .text(d.screenSize);
+
+            const cx = +e.target.getAttribute("cx");
+            const cy = +e.target.getAttribute("cy");
+
+            d3.select(".tooltip")
+                .attr(
+                    "transform",
+                    `translate(${cx - tooltipWidth / 2}, ${cy - 1.5 * tooltipHeight})`
+                )
+                .transition()
+                .duration(200)
+                .style("opacity", 1);
+        })
+
+        .on("mouseleave", () => {
+            d3.select(".tooltip")
+                .transition()
+                .duration(200)
+                .style("opacity", 0)
+                .attr("transform", "translate(0, 500)");
+        });
+};

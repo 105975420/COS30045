@@ -30,6 +30,7 @@ const drawScatterplot = (data) => {
     innerChartS.selectAll("circle")
         .data(data)
         .join("circle")
+        .attr("class", "data-point")
         .attr("cx", d => xScaleS(d.star))
         .attr("cy", d => yScaleS(d.energyConsumption))
         .attr("r", 2.5)
