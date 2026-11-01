@@ -10,16 +10,13 @@ const drawDonutChart = data => {
         .domain(data.map(d => d.screensize_category))
         .range(d3.schemeCategory10);
 
-    // Create pie generator
     const pie = d3.pie()
         .value(d => d.Count);
 
-    // Create arc generator
     const arc = d3.arc()
         .innerRadius(radius * 0.5)
         .outerRadius(radius);
     
-    // Create SVG container
     const svg = d3.select("#donut-chart")
         .append("svg")
         .attr("width", width)
@@ -27,7 +24,6 @@ const drawDonutChart = data => {
         .append("g")
         .attr("transform", `translate(${width / 2}, ${height / 2})`);
     
-    // Draw donut chart
     svg.selectAll("path")
         .data(pie(data))
         .enter()
@@ -35,7 +31,6 @@ const drawDonutChart = data => {
         .attr("d", arc)
         .attr("fill", d => colorScale(d.data.screensize_category));
 
-    // Add labels
     svg.selectAll("text")
         .data(pie(data))
         .enter()

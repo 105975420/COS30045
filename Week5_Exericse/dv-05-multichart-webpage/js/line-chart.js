@@ -15,32 +15,26 @@ const drawLineChart = data => {
         .domain([0, d3.max(data, d => d.averagePrice)])
         .range([innerHeight, 0]);
 
-    // Set up axes
     const bottomAxis = d3.axisBottom(xScale)
         .tickFormat(d3.format("d"));
 
     const leftAxis = d3.axisLeft(yScale);
 
-    // Create SVG container
     const svg = d3.select("#line-chart")
         .append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
         .style("border", "1px solid black");
 
-    // Create inner chart group
     const innerChart = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    // Add bottom x-axis
     innerChart.append("g")
         .attr("transform", `translate(0, ${innerHeight})`)
         .call(bottomAxis);
 
-    // Add left y-axis
     innerChart.append("g")
         .call(leftAxis);
-    
-    // Y-axis label
+
     innerChart.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -innerHeight / 2)
@@ -48,14 +42,12 @@ const drawLineChart = data => {
         .attr("text-anchor", "middle")
         .text("Average Price ($ per MWh)");
 
-    // X-axis label
     innerChart.append("text")
         .attr("x", innerWidth / 2)
         .attr("y", innerHeight + 40)
         .attr("text-anchor", "middle")
         .text("Year");
-    
-    // Draw line
+
     const line = d3.line()
         .x(d => xScale(d.year))
         .y(d => yScale(d.averagePrice));
@@ -66,8 +58,7 @@ const drawLineChart = data => {
         .attr("stroke", "steelblue")
         .attr("stroke-width", 2)
         .attr("d", line);
-    
-    // Draw scatter plot points
+
     innerChart.selectAll("circle")
         .data(data)
         .join("circle")

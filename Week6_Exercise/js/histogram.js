@@ -11,16 +11,13 @@ const drawHistogram = (data) => {
 
     console.log(bins);
 
-    // Calculate the minimum and maximum energy consumption values
     const minEng = bins[0].x0;
     const maxEng = bins[bins.length - 1].x1;
 
-    // Calculate the maximum length of the bins
     const binsMaxLength = d3.max(bins, d => d.length);
 
     console.log("minEng:", minEng, "maxEng:", maxEng, "binsMaxLength:", binsMaxLength);
 
-    // Set the domains and ranges for the x and y scales
     xScale
         .domain([minEng, maxEng])
         .range([0, innerWidth]);
@@ -30,8 +27,7 @@ const drawHistogram = (data) => {
         .range([innerHeight, 0])
         .nice();
 
-    
-    // Draw the bars of the histogram
+
     innerChart.selectAll("rect")
         .data(bins)
         .join("rect")
@@ -41,16 +37,13 @@ const drawHistogram = (data) => {
         .attr("height", d => innerHeight - yScale(d.length))
         .attr("fill", barColor);
 
-    // Add the x-axis
     innerChart.append("g")
         .attr("transform", `translate(0,${innerHeight})`)
         .call(d3.axisBottom(xScale));
 
-    // Add the y-axis
     innerChart.append("g")
         .call(d3.axisLeft(yScale));
-    
-    // Add the x-axis label
+
     innerChart.append("text")
         .attr("class", "axis-label")
         .attr("x", innerWidth / 2)
@@ -58,7 +51,6 @@ const drawHistogram = (data) => {
         .attr("text-anchor", "middle")
         .text("Energy Consumption (kWh/year)");
 
-    // Add the y-axis label
     innerChart.append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")

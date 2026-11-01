@@ -9,14 +9,11 @@ const populateFilters = (data) => {
             console.log("Clicked filter:", e);
             console.log("Clicked filter data:", d);
 
-            // If the clicked filter is not already active, update the active state of the filters
             if (!d.isActive) {
-                // Make sure the button clicked is not already active
                 filters_screen.forEach(filter => {
                     filter.isActive = d.id === filter.id ? true : false;
                 });
 
-                // Update the filter buttons based on which one was clicked
                 d3.selectAll("#filters_screen .filter")
                     .classed("active", filter => filter.id === d.id ? true : false);
                 
@@ -42,13 +39,11 @@ const populateFilters = (data) => {
 
 const createTooltip = (data) => {
 
-    // Append tooltip to innerChart
     const tooltip = innerChartS
         .append("g")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    // Append tooltip background rectangle
     tooltip.append("rect")
         .attr("width", tooltipWidth)
         .attr("height", tooltipHeight)
@@ -57,7 +52,6 @@ const createTooltip = (data) => {
         .attr("fill", barColor)
         .attr("fill-opacity", 0.75);
 
-    // Append tooltip text
     tooltip.append("text")
         .text("NA")
         .attr("x", tooltipWidth / 2)

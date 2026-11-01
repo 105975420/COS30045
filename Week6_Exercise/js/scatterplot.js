@@ -1,32 +1,26 @@
 
 const drawScatterplot = (data) => {
 
-    // Set the dimensions and margins of the chart area
     const svg = d3.select("#scatterplot")
         .append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`);
 
-    // Create an inner chart group with margins
     innerChartS = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
     
-    
-    // Calculate the maximum values
+
     const maxStar = d3.max(data, d => d.star);
     const maxEnergy = d3.max(data, d => d.energyConsumption);
 
-    // Set up the x and y scales
     xScaleS.domain([0, maxStar]).range([0, innerWidth]);
     yScaleS.domain([0, maxEnergy]).range([innerHeight, 0]).nice();
 
-    
-    // Set up colour scale
+
     colorScale
         .domain(data.map(d => d.screenTech))
         .range(d3.schemeCategory10);
     
-    
-    // Draw the circles
+
     innerChartS.selectAll("circle")
         .data(data)
         .join("circle")
@@ -37,18 +31,15 @@ const drawScatterplot = (data) => {
         .attr("fill", d => colorScale(d.screenTech))
         .attr("opacity", 0.5);
 
-    
-    // Add bottom axis (Star Rating)
+
     innerChartS.append("g")
         .attr("transform", `translate(0,${innerHeight})`)
         .call(d3.axisBottom(xScaleS));
 
-    // Add left axis (Energy Consumption)
     innerChartS.append("g")
         .call(d3.axisLeft(yScaleS));
     
-    
-    // Add x-axis label
+
     innerChartS.append("text")
         .attr("class", "axis-label")
         .attr("x", innerWidth / 2)
@@ -56,7 +47,6 @@ const drawScatterplot = (data) => {
         .attr("text-anchor", "middle")
         .text("Star Rating");
 
-    // Add y-axis label
     innerChartS.append("text")
         .attr("class", "axis-label")
         .attr("transform", "rotate(-90)")
@@ -65,8 +55,7 @@ const drawScatterplot = (data) => {
         .attr("text-anchor", "middle")
         .text("Labeled Energy Consumption (kWh/year)");
     
-    
-    // Add legend
+
     const legend = innerChartS.append("g")
         .attr("transform", `translate(${innerWidth - 100}, 0)`);
 
@@ -84,8 +73,4 @@ const drawScatterplot = (data) => {
         .attr("x", 10)
         .attr("y", 4)
         .text(d => d);
-
-
-
-
 };
