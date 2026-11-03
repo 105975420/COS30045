@@ -43,3 +43,12 @@ p {
     line-height: 1.8;
     font-weight: 300;
 }
+footer {
+    background-color: #d2691e;
+    color: #ffffff; 
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
