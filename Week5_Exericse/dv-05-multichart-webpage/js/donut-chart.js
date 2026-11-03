@@ -38,7 +38,7 @@ const drawDonutChart = data => {
         .attr("transform", d => `translate(${arc.centroid(d)})`)
         .attr("text-anchor", "middle")
         .attr("dy", "0.35em")
-        .text(d => d.data.screensize_category);
+        .text(d => d.data.screensize_category + " (" + d.data.Count + ")");
 };
 
 d3.csv("data/screenSizeCount.csv", d => {
