@@ -22,14 +22,11 @@ const filters_screen = [
     { id: "OLED", label: "OLED", isActive: false }
 ];
 
-// Set up inner chart variable for scatterplot
 let innerChartS;
 
-// Set up tooltip dimensions
 const tooltipWidth = 65;
 const tooltipHeight = 32;
 
-// Set up scatterplot scales and color scale
 const xScaleS = d3.scaleLinear();
 const yScaleS = d3.scaleLinear();
 const colorScale = d3.scaleOrdinal();
